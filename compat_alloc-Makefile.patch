@@ -1,0 +1,10 @@
+--- lib/modules/fglrx/build_mod/2.6.x/Makefile.compat_alloc	2010-10-25 19:14:43.157401050 -0400
++++ lib/modules/fglrx/build_mod/2.6.x/Makefile	2010-10-25 19:14:54.586401063 -0400
+@@ -66,6 +66,7 @@
+                 -DFGL_GART_RESERVED_SLOT \
+                 -DFGL_LINUX253P1_VMA_API \
+                 -DPAGE_ATTR_FIX=$(PAGE_ATTR_FIX) \
++                -DCOMPAT_ALLOC_USER_SPACE=arch_compat_alloc_user_space \
+ 
+ ifeq ($(KERNELRELEASE),)
+ # on first call from remote location we get into this path
