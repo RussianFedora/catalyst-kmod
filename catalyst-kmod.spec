@@ -6,14 +6,14 @@
 #define buildforkernels newest
 
 # Tweak to have debuginfo - part 1/2
-%if 0%{?fedora} > 7
+%if 0%{?fedora} > 7 || 0%{?rhel} > 5
 %define __debug_install_post %{_builddir}/%{?buildsubdir}/find-debuginfo.sh %{_builddir}/%{?buildsubdir}\
 %{nil}
 %endif
 
 Name:        catalyst-kmod
 Version:     11.2
-Release:     3%{?dist}.1
+Release:     4%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -46,7 +46,7 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfi
 %setup -q -c -T -a 0
 
 # Tweak to have debuginfo - part 2/2
-%if 0%{?fedora} > 7
+%if 0%{?fedora} > 7 || 0%{?rhel} > 5
 cp -p %{_prefix}/lib/rpm/find-debuginfo.sh .
 sed -i -e 's|strict=true|strict=false|' find-debuginfo.sh
 %endif
@@ -101,7 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-3.1
+* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-4
+- added rules for rhel
+
+* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-3
 - apply patch to build with 2.6.38 kernel
 
 * Sat Feb 19 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-2
