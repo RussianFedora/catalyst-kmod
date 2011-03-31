@@ -13,13 +13,13 @@
 
 Name:        catalyst-kmod
 Version:     11.3
-Release:     1%{?dist}.1
+Release:     1%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/catalyst-kmod-data-%{version}.tar.bz2
+Source0:     catalyst-kmod-data-%{version}.tar.bz2
 Source11:    catalyst-kmodtool-excludekernel-filterfile
 Patch0:      compat_alloc-Makefile.patch
 Patch1:      2.6.38_console.patch
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1.1
+* Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1
 - update to 11.3
 
 * Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-4.1
