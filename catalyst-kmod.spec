@@ -19,7 +19,7 @@ Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/catalyst-kmod-data-%{version}.tar.bz2
+Source0:     catalyst-kmod-data-%{version}.tar.bz2
 Source11:    catalyst-kmodtool-excludekernel-filterfile
 Patch0:      compat_alloc-Makefile.patch
 Patch1:      2.6.38_console.patch
