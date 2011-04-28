@@ -6,20 +6,20 @@
 #define buildforkernels newest
 
 # Tweak to have debuginfo - part 1/2
-%if 0%{?fedora} > 7 || 0%{?rhel} > 5
+%if 0%{?fedora} > 7
 %define __debug_install_post %{_builddir}/%{?buildsubdir}/find-debuginfo.sh %{_builddir}/%{?buildsubdir}\
 %{nil}
 %endif
 
 Name:        catalyst-kmod
-Version:     11.3
-Release:     1%{?dist}.1
+Version:     11.4
+Release:     1%{?dist}.R
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     catalyst-kmod-data-%{version}.tar.bz2
+Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/catalyst-kmod-data-%{version}.tar.bz2
 Source11:    catalyst-kmodtool-excludekernel-filterfile
 Patch0:      compat_alloc-Makefile.patch
 Patch1:      2.6.38_console.patch
@@ -46,7 +46,7 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfi
 %setup -q -c -T -a 0
 
 # Tweak to have debuginfo - part 2/2
-%if 0%{?fedora} > 7 || 0%{?rhel} > 5
+%if 0%{?fedora} > 7
 cp -p %{_prefix}/lib/rpm/find-debuginfo.sh .
 sed -i -e 's|strict=true|strict=false|' find-debuginfo.sh
 %endif
@@ -101,19 +101,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1.1
-- rebuild against new kernel
+* Thu Apr 28 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.4-1.R
+- update to 11.4
 
-* Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1
+* Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1.1
 - update to 11.3
 
-* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-4.1
-- rebuilt
-
-* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-4
-- added rules for rhel
-
-* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-3
+* Wed Mar  2 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-3.1
 - apply patch to build with 2.6.38 kernel
 
 * Sat Feb 19 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.2-2
