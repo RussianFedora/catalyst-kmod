@@ -22,7 +22,6 @@ URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0:     catalyst-kmod-data-%{version}.tar.bz2
 Source11:    catalyst-kmodtool-excludekernel-filterfile
 Patch0:      compat_alloc-Makefile.patch
-Patch1:      2.6.38_console.patch
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # needed for plague to make sure it builds for i686
@@ -68,9 +67,6 @@ find fglrxpkg/lib/modules/fglrx/build_mod/ -type f -print0 | xargs -0 chmod 0644
 
 pushd fglrxpkg
 %patch0 -p0 -b.compat_alloc
-%if 0%{?fedora} > 14
-%patch1 -p2 -b.2.6.38
-%endif
 popd
 
 for kernel_version  in %{?kernel_versions} ; do
@@ -103,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Apr 28 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.4-1.R
 - update to 11.4
+- drop kernel patch
 
 * Thu Mar 31 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 11.3-1.1
 - update to 11.3
